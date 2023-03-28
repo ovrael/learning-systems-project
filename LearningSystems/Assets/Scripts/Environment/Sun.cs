@@ -10,11 +10,11 @@ public class Sun : MonoBehaviour
     private int dayLightTime = 22 - 6; //16 hours of day light
 
     private float timeCounter = 0f;
-    private readonly float timeCounterOffset = 140f;
-
     [SerializeField]
-    [Range(1f, 5f)]
-    private float speedFix = 3f;
+    [Range(0f, 360f)]
+    private float timeCounterOffset = 140f;
+
+    private readonly float speedFix = 4f;
 
     private Transform transform;
     private GameTime gameTime;

@@ -85,7 +85,7 @@ public class GameTime : MonoBehaviour
     private void Awake()
     {
         Day = 0;
-        Hour = 6;
+        Hour = 5;
         Minute = 0;
         timeText.text = GetTime();
     }
