@@ -31,11 +31,11 @@ Transform:
   m_GameObject: {fileID: 1071988286857414384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1500, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 300, y: 300, z: 300}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1071988286857414387
 MeshFilter:
@@ -95,9 +95,17 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071988286857414384}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &1071988286857414389
@@ -111,8 +119,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.8
+  m_Color: {r: 1, g: 0.7901448, b: 0.1273585, a: 1}
+  m_Intensity: 2.7
   m_Range: 3000
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -149,7 +157,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -176,8 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayNightOffsetPosition: 3000
   heightAboveGround: 1500
-  dayLightTime: 16
-  speedFix: 4
+  timeCounter: 0
+  moon: {fileID: 0}
 --- !u!114 &2356072849743751102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 0}
-  simulationSpeed: 1
+  simulationSpeed: 90
   day: 0
   minute: 0
   hour: 6

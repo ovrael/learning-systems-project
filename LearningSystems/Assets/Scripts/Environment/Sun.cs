@@ -6,37 +6,37 @@ public class Sun : MonoBehaviour
     private int dayNightOffsetPosition = 3000;
     [SerializeField]
     private int heightAboveGround = 1500;
-    [SerializeField]
-    private int dayLightTime = 22 - 6; //16 hours of day light
+    private readonly int heightOffset = 700;
 
-    private float timeCounter = 0f;
     [SerializeField]
-    [Range(0f, 360f)]
-    private float timeCounterOffset = 140f;
+    private float timeCounter = 0f;
+    private readonly int timeCounterOffset = 140;
 
     private readonly float speedFix = 4f;
 
     private Transform transform;
-    private GameTime gameTime;
+    [SerializeField]
+    private GameObject moon;
 
     private void Awake()
     {
         transform = GetComponent<Transform>();
-        gameTime = GetComponent<GameTime>();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         timeCounter = timeCounterOffset;
-        transform.position = new Vector3(0f, heightAboveGround, 0f);
+        //moon.SetActive(false);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        timeCounter += (Time.deltaTime * gameTime.SimulationSpeed) / speedFix;
-        transform.position = Quaternion.AngleAxis(timeCounter, Vector3.back) * new Vector3(heightAboveGround, 0f);
+        timeCounter += Time.deltaTime / speedFix;
+        transform.position = Quaternion.AngleAxis(timeCounter, Vector3.back) * new Vector3(heightAboveGround, 0f) + new Vector3(0, heightOffset, 0);
+
+        //moon.SetActive(timeCounter > 320 || timeCounter < timeCounterOffset + 40);
 
         if (timeCounter >= timeCounterOffset + 360)
         {

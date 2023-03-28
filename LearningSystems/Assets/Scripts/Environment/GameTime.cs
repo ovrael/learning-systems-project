@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,10 +8,10 @@ public class GameTime : MonoBehaviour
     private TMP_Text timeText;
 
     [Tooltip("How many minutes per real life second")]
-    [Range(1, 60)]
+    [Range(0.5f, 90f)]
     [SerializeField]
-    private int simulationSpeed = 1;
-    public int SimulationSpeed { get { return simulationSpeed; } }
+    private float simulationSpeed = 1;
+    private float elapsed = 0f;
 
     [SerializeField]
     private int day = 0;
@@ -76,28 +77,27 @@ public class GameTime : MonoBehaviour
         Hour += hour;
         Day += day;
     }
-
-    private void Increase1Minute()
-    {
-        Minute += simulationSpeed;
-    }
-
-    private void Awake()
-    {
-        Day = 0;
-        Hour = 5;
-        Minute = 0;
-        timeText.text = GetTime();
-    }
-
     private void Start()
     {
-        InvokeRepeating("Increase1Minute", 1f, 1f);  //1s delay, repeat every 1s
+        timeText.text = GetTime();
     }
 
-    private void Update()
+    void Update()
     {
-        timeText.text = GetTime();
+        elapsed += Time.deltaTime;
+        if (elapsed >= 1f)
+        {
+            int minutes = ((int)elapsed) % 100;
+            AddTime(minutes, 0, 0);
+
+            elapsed %= 1f;
+            timeText.text = GetTime();
+        }
+    }
+
+    private void OnValidate()
+    {
+        Time.timeScale = simulationSpeed;
     }
 
     public string GetTime()
@@ -109,9 +109,4 @@ public class GameTime : MonoBehaviour
     {
         return value < 10 ? $"0{value}" : $"{value}";
     }
-    //private void FixedUpdate()
-    //{
-    //    Minute++;
-    //}
-
 }
