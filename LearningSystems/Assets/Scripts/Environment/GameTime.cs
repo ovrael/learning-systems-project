@@ -80,6 +80,7 @@ public class GameTime : MonoBehaviour
     private void Start()
     {
         timeText.text = GetTime();
+        Time.timeScale = simulationSpeed;
     }
 
     void Update()
